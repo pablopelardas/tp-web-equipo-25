@@ -10,6 +10,36 @@ namespace Negocio
 {
     public class CategoriaNegocio
     {
+        public List<Categoria> ListarCategoriaConSP()
+        {
+            List<Categoria> categorias = new List<Categoria>();
+            Database datos = new Database();
+
+            try
+            {
+                datos.SetProcedure("SP_ListarCategorias");
+                datos.ReadData();
+
+                while (datos.Reader.Read())
+                {
+                    Categoria categoria = new Categoria();
+                    categoria.Id = (int)datos.Reader["Id"];
+                    categoria.Nombre = (string)datos.Reader["Descripcion"];
+
+                    categorias.Add(categoria);
+                }
+
+                return categorias;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CloseConnection();
+            }
+        }
 
         public List<Categoria> ListarCategorias()
         {
