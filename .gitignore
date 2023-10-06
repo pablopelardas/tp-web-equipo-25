@@ -397,4 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-/TpGestorArticulos/connectionStrings.config
+**/connectionStrings.config
