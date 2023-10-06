@@ -21,13 +21,15 @@
         %>
                 <div class="col">
                     <div class="card">
-                        <%foreach (Dominio.Imagen i in ListaImagenes)
+                        <%
+                            foreach (Dominio.Imagen i in ListaImagenes)
                             {
                                 if (i.IdArticulo == item.Id)
                                 {
                                     ImgSeleccionada = i.URL;
                                 }
-                            } %>
+                            } 
+                        %>
                         <img src="<%: ImgSeleccionada %>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><%: item.Nombre %></h5>
