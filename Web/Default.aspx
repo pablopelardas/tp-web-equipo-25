@@ -4,12 +4,12 @@
 
     <div class="row m-4 mx-auto w-50">
 
-        <div class="col-6">
+<%--        <div class="col-6">
             <asp:DropDownList ID="ddlMarca" CssClass="form-select mx-auto w-auto" runat="server"></asp:DropDownList>
         </div>
         <div class="col-6">
             <asp:DropDownList ID="ddlCategoria" CssClass="form-select mx-auto w-auto" runat="server"></asp:DropDownList>
-        </div>
+        </div>--%>
 
     </div>
 
