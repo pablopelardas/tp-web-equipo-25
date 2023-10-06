@@ -14,8 +14,8 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <p>TEST</p>
-<%--        <%
+
+        <%
             foreach (Dominio.Articulo item in ListaArticulos)
             {
         %>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-        <%  } %>--%>
+        <%  } %>
 
     </div>
 
