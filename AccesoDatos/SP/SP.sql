@@ -21,8 +21,3 @@ Go
 
 Exec SP_ListarArticulos
 Go
-
-Create Procedure SP_ListarImagenes
-as
-Select Id, IdArticulo, ImagenUrl From IMAGENES
-Go

@@ -12,8 +12,7 @@ namespace Web
     public partial class _Default : Page
     {
         public List<Articulo> ListaArticulos { get; set; }
-        public List<Imagen> ListaImagenes { get; set; }
-        public string ImgSeleccionada { get; set; }
+        public List<Categoria> ListaCategorias { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,14 +31,9 @@ namespace Web
                 ArticulosNegocio articuloNegocio = new ArticulosNegocio();
                 Session.Add("listaArticulos", articuloNegocio.ListarArticulosConSP());
             }
-            if (Session["listaImagenes"] == null)
-            {
-                ImagenNegocio imgNegocio = new ImagenNegocio();
-                Session.Add("listaImagenes", imgNegocio.ListarImagenesConSP());
-            }
 
             ListaArticulos = (List<Articulo>)Session["listaArticulos"];
-            ListaImagenes = (List<Imagen>)Session["listaImagenes"];
+            ListaCategorias = (List<Categoria>)Session["listaCategorias"];
 
             ddlMarca.DataSource = Session["listaMarcas"];
             ddlMarca.DataBind();

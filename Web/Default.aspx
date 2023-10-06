@@ -13,32 +13,31 @@
 
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row">
 
         <%
-            foreach (Dominio.Articulo item in ListaArticulos)
+            foreach (Dominio.Categoria item in ListaCategorias)
             {
         %>
-                <div class="col">
-                    <div class="card">
-                        <%
-                            foreach (Dominio.Imagen i in ListaImagenes)
-                            {
-                                if (i.IdArticulo == item.Id)
-                                {
-                                    ImgSeleccionada = i.URL;
-                                }
-                            } 
-                        %>
-                        <img src="<%: ImgSeleccionada %>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><%: item.Nombre %></h5>
-                            <p class="card-text"><%: item.Descripcion %></p>
+        <div class="row">
+            <div style="display: flex; flex-direction: column;">
+                <h3><%: item.Nombre %></h3>
+                <div style="display: flex; gap: 10px">
+                <%foreach (Dominio.Articulo art in ListaArticulos.FindAll(a => a.Categoria.Nombre == item.Nombre))
+                    {  %>
+                        <div class="card" style="max-width: 400px;">
+                            <img src="<%:art.Imagenes[0] %>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><%: art.Nombre %></h5>
+                                <p class="card-text"><%: art.Descripcion %></p>
+                            </div>
                         </div>
-                    </div>
+                <%  } %>
                 </div>
-        <%  } %>
 
+            </div>
+        </div>
+        <%  } %>
     </div>
 
 
