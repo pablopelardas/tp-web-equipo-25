@@ -2,43 +2,44 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
+    <div class="row m-4 mx-auto w-50">
 
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
+        <div class="col-6">
+            <asp:DropDownList ID="ddlMarca" CssClass="form-select mx-auto w-auto" runat="server"></asp:DropDownList>
         </div>
-    </main>
+        <div class="col-6">
+            <asp:DropDownList ID="ddlCategoria" CssClass="form-select mx-auto w-auto" runat="server"></asp:DropDownList>
+        </div>
+
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <%
+            foreach (Dominio.Articulo item in ListaArticulos)
+            {
+        %>
+                <div class="col">
+                    <div class="card">
+                        <%foreach (Dominio.Imagen i in ListaImagenes)
+                            {
+                                if (i.IdArticulo == item.Id)
+                                {
+                                    ImgSeleccionada = i.URL;
+                                }
+                            } %>
+                        <img src="<%: ImgSeleccionada %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%: item.Nombre %></h5>
+                            <p class="card-text"><%: item.Descripcion %></p>
+                        </div>
+                    </div>
+                </div>
+        <%  } %>
+
+    </div>
+
+
+
 
 </asp:Content>

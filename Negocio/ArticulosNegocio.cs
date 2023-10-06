@@ -18,6 +18,25 @@ namespace Negocio
             // inicializar DAO
         }
 
+        public List<Articulo> ListarArticulosConSP()
+        {
+            Database datos = new Database();
+
+            try
+            {
+                datos.SetProcedure("SP_ListarArticulos");
+                return readData(datos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CloseConnection();
+            }
+        }
+
         public List<Articulo> ListarArticulos()
         {
             Database datos = new Database();
