@@ -21,11 +21,6 @@ namespace Web
             {
                 Id = int.Parse(Request.QueryString["id"]);
             }
-
-            //foreach (Articulo art in listaArticulos.FindAll(a => a.Id == Id))
-            //{
-            //    art.Imagenes.Add(listaArticulos[]);
-            //}
         }
     }
 }
