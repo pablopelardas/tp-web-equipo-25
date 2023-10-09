@@ -40,5 +40,7 @@ namespace Web
             ddlCategoria.DataSource = Session["listaCategorias"];
             ddlCategoria.DataBind();
         }
+
+
     }
 }
