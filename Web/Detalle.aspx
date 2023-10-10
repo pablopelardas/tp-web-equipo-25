@@ -53,7 +53,7 @@
                     <label class="text-dark fs-3"> $<%: art.Precio %></label>
 
                     <div>
-                        <button type="button" class="btn btn-danger">Volver</button>
+                        <a href="Default.aspx" class="btn btn-danger">Volver</a>
                         <button type="button" class="btn btn-success">Agregar al carrito</button>
                     </div>
 

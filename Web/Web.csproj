@@ -119,6 +119,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Detalle.aspx" />
+    <Content Include="DetalleCarrito.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="Detalle.aspx.designer.cs">
       <DependentUpon>Detalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleCarrito.aspx.cs">
+      <DependentUpon>DetalleCarrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleCarrito.aspx.designer.cs">
+      <DependentUpon>DetalleCarrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
