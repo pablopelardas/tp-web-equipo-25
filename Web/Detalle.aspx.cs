@@ -45,6 +45,8 @@ namespace Web
                 aux.IdArticulo = art.Id;
                 aux.Nombre = art.Nombre;
                 aux.Descripcion = art.Descripcion;
+                aux.Imagen = art.Imagenes[0].ToString();
+
                 aux.Cantidad = int.Parse(tBoxCantidad.Text);
                 aux.Precio = art.Precio;
 

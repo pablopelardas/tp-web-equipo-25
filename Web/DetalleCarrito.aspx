@@ -14,7 +14,7 @@
                 <div class="card mb-2">
                     <div class="row g-0">
                         <div class="col-2">
-                            <img src="https://cdn.pixabay.com/photo/2018/12/22/03/27/smart-tv-3889141_1280.png" class="w-100 h-100" alt="...">
+                            <img src="<%: car.Imagen %>" class="w-100 h-100" alt="...">
                         </div>
                         <div class="col-8">
                             <div class="card-body">
