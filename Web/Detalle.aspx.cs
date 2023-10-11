@@ -44,6 +44,7 @@ namespace Web
 
                 aux.IdArticulo = art.Id;
                 aux.Nombre = art.Nombre;
+                aux.Descripcion = art.Descripcion;
                 aux.Cantidad = int.Parse(tBoxCantidad.Text);
                 aux.Precio = art.Precio;
 
