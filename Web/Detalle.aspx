@@ -50,14 +50,14 @@
                     <label class="text-uppercase fs-5"><%:art.Marca %></label>
                     <h2 class="text-dark fw-medium display-2"><%:art.Nombre %></h2>
                     <p class="text-body-secondary lh-sm"><%:art.Descripcion %></p>
-                    
+
                     <div>
                         <label>Cantidad:</label>
                         <asp:TextBox ID="tBoxCantidad" TextMode="Number" runat="server" min="0" max="50" step="1"/>
                     </div>
 
                     <label class="text-dark fs-3">$<%:art.Precio %></label>
-                               
+           
                     <div>
                         <a href="Default.aspx" class="btn btn-danger">Volver</a>
                         <asp:Button ID="btnAgregarCarrito" OnClick="btnAgregarCarrito_Click" CssClass="btn btn-success" runat="server" Text="Agregar al carrito" />
