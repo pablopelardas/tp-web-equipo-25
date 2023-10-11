@@ -16,29 +16,29 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["listaMarcas"] == null)
+            if (!IsPostBack)
             {
-                MarcaNegocio marcaNegocio = new MarcaNegocio();
-                Session.Add("listaMarcas", marcaNegocio.ListarMarcasConSP());
-            }
-            if (Session["listaCategorias"] == null)
-            {
-                CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-                Session.Add("listaCategorias", categoriaNegocio.ListarCategoriaConSP());
-            }
-            if (Session["listaArticulos"] == null)
-            {
-                ArticulosNegocio articuloNegocio = new ArticulosNegocio();
-                Session.Add("listaArticulos", articuloNegocio.ListarArticulosConSP());
+                if (Session["listaMarcas"] == null)
+                {
+                    MarcaNegocio marcaNegocio = new MarcaNegocio();
+                    Session.Add("listaMarcas", marcaNegocio.ListarMarcasConSP());
+                }
+                if (Session["listaCategorias"] == null)
+                {
+                    CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+                    Session.Add("listaCategorias", categoriaNegocio.ListarCategoriaConSP());
+                }
+                if (Session["listaArticulos"] == null)
+                {
+                    ArticulosNegocio articuloNegocio = new ArticulosNegocio();
+                    Session.Add("listaArticulos", articuloNegocio.ListarArticulosConSP());
+                }
+
+                ListaArticulos = (List<Articulo>)Session["listaArticulos"];
+                ListaCategorias = (List<Categoria>)Session["listaCategorias"];
             }
 
-            ListaArticulos = (List<Articulo>)Session["listaArticulos"];
-            ListaCategorias = (List<Categoria>)Session["listaCategorias"];
-
-            ddlMarca.DataSource = Session["listaMarcas"];
-            ddlMarca.DataBind();
-            ddlCategoria.DataSource = Session["listaCategorias"];
-            ddlCategoria.DataBind();
+           
         }
 
 
