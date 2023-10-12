@@ -18,13 +18,13 @@ namespace Negocio
             // inicializar DAO
         }
 
-        public List<Articulo> ListarArticulosConSP()
+        public List<Articulo> ListarArticulos()
         {
             Database datos = new Database();
 
             try
             {
-                datos.SetProcedure("SP_ListarArticulos");
+                datos.SetQuery("select a.Id, Codigo, Nombre, a.Descripcion as Descripcion,m.Id as IdMarca, m.Descripcion as Marca, c.Id as IdCategoria , c.Descripcion as Categoria, Precio from ARTICULOS a\r\nleft join MARCAS m on a.IdMarca = m.Id\r\nleft join CATEGORIAS c on a.IdCategoria = c.Id\r\n");
                 return readData(datos);
             }
             catch (Exception ex)
@@ -37,14 +37,14 @@ namespace Negocio
             }
         }
 
-        public List<Articulo> ListarArticulos()
+        public Articulo BuscarArticulo(int id)
         {
             Database datos = new Database();
-
             try
             {
-                datos.SetQuery("select a.Id, Codigo, Nombre, a.Descripcion as Descripcion,m.Id as IdMarca, m.Descripcion as Marca, c.Id as IdCategoria , c.Descripcion as Categoria, Precio from ARTICULOS a\r\nleft join MARCAS m on a.IdMarca = m.Id\r\nleft join CATEGORIAS c on a.IdCategoria = c.Id\r\n");
-                return readData(datos);
+                datos.SetQuery("select a.Id, Codigo, Nombre, a.Descripcion as Descripcion,m.Id as IdMarca, m.Descripcion as Marca, c.Id as IdCategoria , c.Descripcion as Categoria, Precio from ARTICULOS a\r\nleft join MARCAS m on a.IdMarca = m.Id\r\nleft join CATEGORIAS c on a.IdCategoria = c.Id\r\nwhere a.Id = @Id");
+                datos.SetParameter("@Id", id);
+                return readData(datos).FirstOrDefault();
             }
             catch (Exception ex)
             {

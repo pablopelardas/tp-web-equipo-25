@@ -21,17 +21,17 @@ namespace Web
                 if (Session["listaMarcas"] == null)
                 {
                     MarcaNegocio marcaNegocio = new MarcaNegocio();
-                    Session.Add("listaMarcas", marcaNegocio.ListarMarcasConSP());
+                    Session.Add("listaMarcas", marcaNegocio.ListarMarcas());
                 }
                 if (Session["listaCategorias"] == null)
                 {
                     CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-                    Session.Add("listaCategorias", categoriaNegocio.ListarCategoriaConSP());
+                    Session.Add("listaCategorias", categoriaNegocio.ListarCategorias());
                 }
                 if (Session["listaArticulos"] == null)
                 {
                     ArticulosNegocio articuloNegocio = new ArticulosNegocio();
-                    Session.Add("listaArticulos", articuloNegocio.ListarArticulosConSP());
+                    Session.Add("listaArticulos", articuloNegocio.ListarArticulos());
                 }
 
                 ListaArticulos = (List<Articulo>)Session["listaArticulos"];

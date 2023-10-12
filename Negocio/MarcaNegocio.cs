@@ -10,37 +10,6 @@ namespace Negocio
 {
     public class MarcaNegocio
     {
-        public List<Marca> ListarMarcasConSP()
-        {
-            List<Marca> marcas = new List<Marca>();
-            Database datos = new Database();
-
-            try
-            {
-                datos.SetProcedure("SP_ListarMarcas");
-                datos.ReadData();
-
-                while (datos.Reader.Read())
-                {
-                    Marca marca = new Marca();
-                    marca.Id = (int)datos.Reader["Id"];
-                    marca.Nombre = (string)datos.Reader["Descripcion"];
-
-                    marcas.Add(marca);
-                }
-
-                return marcas;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.CloseConnection();
-            }
-        }
-
         public List<Marca> ListarMarcas()
         {
             List<Marca> marcas = new List<Marca>();

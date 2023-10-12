@@ -12,6 +12,7 @@ namespace Web
     public partial class Detalle : System.Web.UI.Page
     {
         public int Id { get; set; }
+        public Articulo Articulo { get; set; }
         public List<Articulo> ListaArticulos { get; set; }
         public List<Carrito> ListaCarrito { get; set; }
 
@@ -26,7 +27,29 @@ namespace Web
             if (Request.QueryString["id"] != null)
             {
                 Id = int.Parse(Request.QueryString["id"]);
+                // buscar articulo en ListaArticulo
+                if (ListaArticulos != null)
+                {
+                    Articulo = ListaArticulos.Find(a => a.Id == Id);
+                }
+                // si no lo encuentra, buscar en la base de datos
+                if (Articulo == null)
+                {
+                    ArticulosNegocio negocio = new ArticulosNegocio();
+                    Articulo = negocio.BuscarArticulo(Id);
+                }
+
+                // si no lo encuentra en la base de datos, redireccionar a la pagina de error
+                if (Articulo == null)
+                {
+                    //Response.Redirect("Error.aspx"); 404 not found
+                }
             }
+            else
+            {
+                //Response.Redirect("Error.aspx"); 404 not found
+            }
+
 
             if (Session["listaCarrito"] == null)
             {
