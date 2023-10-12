@@ -59,16 +59,9 @@ namespace Web
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
-            foreach (Articulo art in ListaArticulos.FindAll(a => a.Id == Id))
-            {
-                int cantidad = int.Parse(tBoxCantidad.Text);
-                // validar cantidad
-
-                ArticuloDeseado artD = new ArticuloDeseado(art, cantidad);
-
-                ((List<ArticuloDeseado>)Session["ListaCarrito"]).Add(artD);
-            }
-
+            int cantidad = int.Parse(tBoxCantidad.Text);
+            ArticuloDeseado artD = new ArticuloDeseado(Articulo, cantidad);
+            ((List<ArticuloDeseado>)Session["ListaCarrito"]).Add(artD);
             Response.Redirect("Default.aspx", false);
         }
     }

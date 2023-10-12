@@ -35,9 +35,8 @@
                                 <input type="number" min="1" max="50" step="1" value='<%#Eval("Cantidad")%>' />
                             </div>
 
-                            <div class="btn btn-danger">
-                                <asp:ImageButton ID="ImagBtnEliminar" CommandArgument='<%#Eval("Articulo.Id")%>' CommandName="deseadoId" OnClick="ImagBtnEliminar_Click" ImageUrl="~/Image/trash3.svg" runat="server" AutoPostBack="False"/>
-                            </div>
+                             <asp:ImageButton CommandArgument='<%#Eval("Articulo.Id")%>' CommandName="deseadoId" CssClass="btn btn-danger" OnClick="ImagBtnEliminar_Click" ImageUrl="~/Image/trash3.svg" runat="server" />
+
                         </div>
                     </div>
                 </div>
