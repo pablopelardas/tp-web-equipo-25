@@ -10,26 +10,38 @@ namespace Web
 {
     public partial class DetalleCarrito : System.Web.UI.Page
     {
-        public List<Carrito> ListaCarrito { get; set; }
-        public Carrito Carrito { get; set; }
-
+        public List<ArticuloDeseado> ListaCarrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["listaCarrito"] == null)
+            if (!Page.IsPostBack)
             {
-                ListaCarrito = new List<Carrito>();
-                Session.Add("listaCarrito", ListaCarrito);
+                if (Session["listaCarrito"] == null)
+                {
+                    ListaCarrito = new List<ArticuloDeseado>();
+                    Session.Add("listaCarrito", ListaCarrito);
+                }
+            
+            
             }
-
-            if (ListaCarrito == null)
-            {
-                ListaCarrito = (List<Carrito>)Session["ListaCarrito"];
-            }
+            ListaCarrito = (List<ArticuloDeseado>)Session["listaCarrito"];
+            repRepetidor.DataSource = ListaCarrito;
+            repRepetidor.DataBind();
+            
         }
 
         protected void ImagBtnEliminar_Click(object sender, ImageClickEventArgs e)
         {
-            
+            ImageButton btn = (ImageButton)sender;
+            System.Diagnostics.Debug.WriteLine("-------------------------------------------------------");
+            System.Diagnostics.Debug.WriteLine(btn.CommandName);
+            System.Diagnostics.Debug.WriteLine(btn.CommandArgument);
+            System.Diagnostics.Debug.WriteLine(btn.CommandArgument.ToString());
+            System.Diagnostics.Debug.WriteLine("-------------------------------------------------------");
+
+            int id = int.Parse(btn.CommandArgument.ToString());
+            ArticuloDeseado articulo = ListaCarrito.Find(a => a.Articulo.Id == id);
+            ListaCarrito.Remove(articulo);
+            Session["listaCarrito"] = ListaCarrito;
         }
     }
 }

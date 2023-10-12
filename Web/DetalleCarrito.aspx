@@ -6,17 +6,14 @@
 
         <label>Detalle de compra</label>
 
-        <%
-            foreach (Dominio.Carrito car in ListaCarrito)
-            {
-        %>
-
+        <asp:Repeater runat="server" ID="repRepetidor">
+            <ItemTemplate>
                 <div class="card mb-2">
 
                     <div class="row g-0">
 
                         <div class="col-2">
-                            <img src="<%: car.Imagen %>" class="w-100 h-100" alt="...">
+                            <img src='<%#Eval("Articulo.Imagenes[0]")%>' class="w-100 h-100" alt="...">
                         </div>
 
                         <div class="col-8">
@@ -24,9 +21,9 @@
 
                                 <asp:Label ID="lblId" runat="server" Text=""></asp:Label>
 
-                                <label><%: car.Nombre %></label>
-                                <label><%: car.Descripcion %></label>
-                                <label><%: car.Precio %></label>
+                                <label><%#Eval("Articulo.Nombre")%></label>
+                                <label><%#Eval("Articulo.Descripcion")%></label>
+                                <label><%#Eval("Articulo.Precio")%></label>
 
                             </div>
                         </div>
@@ -35,17 +32,18 @@
 
                             <div>
                                 <label>Cantidad:</label>
-                                <input type="number" min="1" max="50" step="1" value="<%: car.Cantidad %>" />
+                                <input type="number" min="1" max="50" step="1" value='<%#Eval("Cantidad")%>' />
                             </div>
 
                             <div class="btn btn-danger">
-                                <asp:ImageButton ID="ImagBtnEliminar" OnClick="ImagBtnEliminar_Click" ImageUrl="~/Image/trash3.svg" runat="server" />
+                                <asp:ImageButton ID="ImagBtnEliminar" CommandArgument='<%#Eval("Articulo.Id")%>' CommandName="deseadoId" OnClick="ImagBtnEliminar_Click" ImageUrl="~/Image/trash3.svg" runat="server" AutoPostBack="False"/>
                             </div>
                         </div>
                     </div>
                 </div>
+            </ItemTemplate>
+        </asp:Repeater>
 
-        <%  } %>
     </div>
 
 </asp:Content>

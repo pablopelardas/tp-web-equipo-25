@@ -14,7 +14,7 @@ namespace Web
         public int Id { get; set; }
         public Articulo Articulo { get; set; }
         public List<Articulo> ListaArticulos { get; set; }
-        public List<Carrito> ListaCarrito { get; set; }
+        public List<ArticuloDeseado> ListaCarrito { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,7 +22,6 @@ namespace Web
             {
                 ListaArticulos = (List<Articulo>)Session["listaArticulos"];
             }
-
 
             if (Request.QueryString["id"] != null)
             {
@@ -50,10 +49,9 @@ namespace Web
                 //Response.Redirect("Error.aspx"); 404 not found
             }
 
-
             if (Session["listaCarrito"] == null)
             {
-                ListaCarrito = new List<Carrito>();
+                ListaCarrito = new List<ArticuloDeseado>();
                 Session.Add("listaCarrito", ListaCarrito);
             }
 
@@ -63,17 +61,12 @@ namespace Web
         {
             foreach (Articulo art in ListaArticulos.FindAll(a => a.Id == Id))
             {
-                Carrito aux = new Carrito();
+                int cantidad = int.Parse(tBoxCantidad.Text);
+                // validar cantidad
 
-                aux.IdArticulo = art.Id;
-                aux.Nombre = art.Nombre;
-                aux.Descripcion = art.Descripcion;
-                aux.Imagen = art.Imagenes[0].ToString();
+                ArticuloDeseado artD = new ArticuloDeseado(art, cantidad);
 
-                aux.Cantidad = int.Parse(tBoxCantidad.Text);
-                aux.Precio = art.Precio;
-
-                ((List<Carrito>)Session["ListaCarrito"]).Add(aux);
+                ((List<ArticuloDeseado>)Session["ListaCarrito"]).Add(artD);
             }
 
             Response.Redirect("Default.aspx", false);
