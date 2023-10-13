@@ -34,5 +34,15 @@ namespace Web
                 Session.Add("listaCarrito", ListaCarrito);
             }
         }
+
+        protected void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (Session["listaArticulos"] == null) return;
+            if (SearchBox.Text == "" || SearchBox.Text.Length < 3) return;
+            List<Articulo> listaArticulos = (List<Articulo>)Session["listaArticulos"];
+            List<Articulo> listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToLower().Contains(SearchBox.Text.ToLower()) || x.Descripcion.ToLower().Contains(SearchBox.Text.ToLower()));
+            Session.Add("listaArticulosFiltrada", listaFiltrada);
+            Response.Redirect("Resultados.aspx");
+        }
     }
 }

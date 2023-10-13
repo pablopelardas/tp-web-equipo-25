@@ -16,13 +16,8 @@ namespace Web
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
                 ListaArticulos = (List<Articulo>)Session["listaArticulos"];
                 ListaCategorias = (List<Categoria>)Session["listaCategorias"];
-            }
-
-           
         }
 
 

@@ -47,8 +47,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-center">
-                    <input class="form-control mx-auto me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <asp:TextBox ID="SearchBox" CssClass="form-control mx-auto me-2" placeholder="Search" aria-label="Search" runat="server"></asp:TextBox>
+                    <asp:Button ID="SearchButton" CssClass="btn btn-outline-success" OnClick="SearchButton_Click" runat="server" Text="Search" />
                 </div>
 
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-end">
@@ -62,10 +62,15 @@
             </div>
         </nav>
 
-        <div class="container-fluid">
+        <div class="content-container container-fluid overflow-auto">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+        <style>
+.content-container {
+                height:85vh;
+            }
+        </style>
 
         <footer>
             <hr />
