@@ -31,7 +31,8 @@ namespace Web
         {
             repRepetidor.DataSource = _carrito.GetArticulosDeseados();
             repRepetidor.DataBind();
-            totalLiteral.Text = _carrito.Total.ToString();
+            // format carrito total to currency
+            totalLiteral.Text = String.Format("{0:C}", _carrito.Total);
         }
 
         protected void ImagBtnEliminar_Click(object sender, ImageClickEventArgs e)
