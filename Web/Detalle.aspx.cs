@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,6 +15,8 @@ namespace Web
         public int Id { get; set; }
         public Articulo Articulo { get; set; }
         public List<ArticuloDeseado> ListaCarrito { get; set; }
+
+        public int ActiveImageIndex { get; set; }
 
 
         private void Load_Articulo()
@@ -53,6 +56,7 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             Load_Articulo();
+            ActiveImageIndex = 0;
         }
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
