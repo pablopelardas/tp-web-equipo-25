@@ -13,55 +13,53 @@ namespace Web
     {
         public int Id { get; set; }
         public Articulo Articulo { get; set; }
-        public List<Articulo> ListaArticulos { get; set; }
         public List<ArticuloDeseado> ListaCarrito { get; set; }
 
-        protected void Page_Load(object sender, EventArgs e)
+
+        private void Load_Articulo()
         {
-            if (ListaArticulos == null)
+            if (!IsPostBack)
             {
-                ListaArticulos = (List<Articulo>)Session["listaArticulos"];
-            }
-
-            if (Request.QueryString["id"] != null)
-            {
-                Id = int.Parse(Request.QueryString["id"]);
-                // buscar articulo en ListaArticulo
-                if (ListaArticulos != null)
+                if (Request.QueryString["id"] != null)
                 {
-                    Articulo = ListaArticulos.Find(a => a.Id == Id);
+                    Id = int.Parse(Request.QueryString["id"]);
+                    if (Session["listaArticulos"] != null)
+                    {
+                        ListaCarrito = (List<ArticuloDeseado>)Session["listaCarrito"];
+                        Articulo = ((List<Articulo>)Session["listaArticulos"]).Find(a => a.Id == Id);
+                    }
+                    else
+                    {
+                        ArticulosNegocio negocio = new ArticulosNegocio();
+                        Articulo = negocio.BuscarArticulo(Id);
+                    }
                 }
-                // si no lo encuentra, buscar en la base de datos
-                if (Articulo == null)
-                {
-                    ArticulosNegocio negocio = new ArticulosNegocio();
-                    Articulo = negocio.BuscarArticulo(Id);
-                }
-
-                // si no lo encuentra en la base de datos, redireccionar a la pagina de error
-                if (Articulo == null)
+                else
                 {
                     //Response.Redirect("Error.aspx"); 404 not found
                 }
+                if (Articulo == null)
+                {
+                    Session.Add("error", "Articulo no encontrado");
+                    Session.Add("errorStatus", "404");
+                    Response.Redirect("Error.aspx");
+                }
+                else
+                {
+                    Session.Add("currentArt", Articulo);
+                }
             }
-            else
-            {
-                //Response.Redirect("Error.aspx"); 404 not found
-            }
-
-            if (Session["listaCarrito"] == null)
-            {
-                ListaCarrito = new List<ArticuloDeseado>();
-                Session.Add("listaCarrito", ListaCarrito);
-            }
-
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Load_Articulo();
         }
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
             int cantidad = int.Parse(tBoxCantidad.Text);
-            ArticuloDeseado artD = new ArticuloDeseado(Articulo, cantidad);
-            ((List<ArticuloDeseado>)Session["ListaCarrito"]).Add(artD);
+            ArticuloDeseado artD = new ArticuloDeseado((Articulo)Session["currentArt"], cantidad);
+            ((List<ArticuloDeseado>)Session["listaCarrito"]).Add(artD);
             Response.Redirect("Default.aspx", false);
         }
     }
