@@ -15,6 +15,33 @@ namespace Web
     {
 
         /// <summary>
+        /// textoBuscado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label textoBuscado;
+
+        /// <summary>
+        /// filtroCategoria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList filtroCategoria;
+
+        /// <summary>
+        /// filtroMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList filtroMarca;
+
+        /// <summary>
         /// rptArticulosFiltrados control.
         /// </summary>
         /// <remarks>

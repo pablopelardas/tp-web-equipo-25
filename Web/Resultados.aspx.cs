@@ -20,7 +20,14 @@ namespace Web
             {
                 ListaArticulosFiltrada = (List<Articulo>)Session["listaArticulosFiltrada"];
             }
+
+
+            textoBuscado.Text = Request.QueryString["search"].ToString();
+
+
         }
+
+        public List<Categoria> ListaCategorias { get; set; }
 
         protected void Page_PreRender(object sender, EventArgs e)
         {

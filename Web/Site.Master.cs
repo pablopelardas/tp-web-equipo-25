@@ -49,7 +49,7 @@ namespace Web
             List<Articulo> listaArticulos = (List<Articulo>)Session["listaArticulos"];
             List<Articulo> listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToLower().Contains(SearchBox.Text.ToLower()) || x.Descripcion.ToLower().Contains(SearchBox.Text.ToLower()));
             Session.Add("listaArticulosFiltrada", listaFiltrada);
-            Response.Redirect("Resultados.aspx");
+            Response.Redirect("Resultados.aspx?search="+ SearchBox.Text);
         }
     }
 }
