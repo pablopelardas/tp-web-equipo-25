@@ -45,6 +45,7 @@
     <Compile Include="Articulo.cs" />
     <Compile Include="ArticuloDeseado.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="Carrito.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

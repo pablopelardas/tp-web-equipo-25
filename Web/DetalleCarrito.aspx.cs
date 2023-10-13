@@ -10,27 +10,26 @@ namespace Web
 {
     public partial class DetalleCarrito : System.Web.UI.Page
     {
-        public List<ArticuloDeseado> ListaCarrito { get; set; }
+        private Carrito _carrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             
-                if (Session["listaCarrito"] == null)
-                {
-                    ListaCarrito = new List<ArticuloDeseado>();
-                    Session.Add("listaCarrito", ListaCarrito);
-                }
-                ListaCarrito = (List<ArticuloDeseado>)Session["listaCarrito"];
-            if (ListaCarrito.Count == 0)
+            if (Session["carrito"] == null)
+            {
+                _carrito = new Carrito();
+            }
+            else
+            {
+                _carrito = (Carrito)Session["carrito"];
+            }
+            if (_carrito.GetCantidadArticulos() == 0)
             {
                 Response.Redirect("Default.aspx");
             }
-
-            
-            //ImagBtnEliminar_Click.Click += new ImageClickEventHandler(ImagBtnEliminar_Click);
         }
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            repRepetidor.DataSource = ListaCarrito;
+            repRepetidor.DataSource = _carrito.GetArticulosDeseados();
             repRepetidor.DataBind();
         }
 
@@ -40,10 +39,11 @@ namespace Web
             try
             {
                 int id = int.Parse(btn.CommandArgument.ToString());
-                ArticuloDeseado articulo = ListaCarrito.Find(a => a.Articulo.Id == id);
-                ListaCarrito.Remove(articulo);
-                Session["listaCarrito"] = ListaCarrito;
-                Response.Redirect("DetalleCarrito.aspx");
+                if (_carrito.EliminarArticulo(id))
+                {
+                    Session["carrito"] = _carrito;
+                    Response.Redirect("DetalleCarrito.aspx");
+                }
             }
             catch (Exception)
             {

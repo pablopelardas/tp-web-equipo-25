@@ -24,5 +24,10 @@ namespace Dominio
             Subtotal = articulo.Precio * cantidad;
         }
 
+        public void UpdateSubtotal()
+        {
+            Subtotal = Articulo.Precio * Cantidad;
+        }
+
     }
 }

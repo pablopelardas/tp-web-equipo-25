@@ -28,13 +28,13 @@ namespace Web
                 ArticulosNegocio articuloNegocio = new ArticulosNegocio();
                 Session.Add("listaArticulos", articuloNegocio.ListarArticulos());
             }
-            if (Session["listaCarrito"] == null)
+            if (Session["carrito"] == null)
             {
-                List<ArticuloDeseado> ListaCarrito = new List<ArticuloDeseado>();
-                Session.Add("listaCarrito", ListaCarrito);
+                Carrito Carrito = new Carrito();
+                Session.Add("carrito", Carrito);
             }else
             {
-                int count = ((List<ArticuloDeseado>)Session["listaCarrito"]).Count;
+                int count = ((Carrito)Session["carrito"]).GetCantidadArticulos();
                 if (count > 0)
                 CarritoCounter.Text = count.ToString();
                 else CarritoCounter.Text = "";

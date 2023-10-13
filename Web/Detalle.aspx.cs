@@ -14,7 +14,7 @@ namespace Web
     {
         public int Id { get; set; }
         public Articulo Articulo { get; set; }
-        public List<ArticuloDeseado> ListaCarrito { get; set; }
+        public Carrito Carrito { get; set; }
 
         public int ActiveImageIndex { get; set; }
 
@@ -28,7 +28,7 @@ namespace Web
                     Id = int.Parse(Request.QueryString["id"]);
                     if (Session["listaArticulos"] != null)
                     {
-                        ListaCarrito = (List<ArticuloDeseado>)Session["listaCarrito"];
+                        Carrito = (Carrito)Session["carrito"];
                         Articulo = ((List<Articulo>)Session["listaArticulos"]).Find(a => a.Id == Id);
                     }
                     else
@@ -63,8 +63,7 @@ namespace Web
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
             int cantidad = int.Parse(tBoxCantidad.Text);
-            ArticuloDeseado artD = new ArticuloDeseado((Articulo)Session["currentArt"], cantidad);
-            ((List<ArticuloDeseado>)Session["listaCarrito"]).Add(artD);
+            ((Carrito)Session["carrito"]).AgregarArticulo((Articulo)Session["currentArt"], cantidad);
             Response.Redirect("Default.aspx", false);
         }
     }
