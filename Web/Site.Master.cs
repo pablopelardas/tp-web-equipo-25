@@ -32,7 +32,14 @@ namespace Web
             {
                 List<ArticuloDeseado> ListaCarrito = new List<ArticuloDeseado>();
                 Session.Add("listaCarrito", ListaCarrito);
+            }else
+            {
+                int count = ((List<ArticuloDeseado>)Session["listaCarrito"]).Count;
+                if (count > 0)
+                CarritoCounter.Text = count.ToString();
+                else CarritoCounter.Text = "";
             }
+
         }
 
         protected void SearchButton_Click(object sender, EventArgs e)
