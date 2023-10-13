@@ -70,7 +70,6 @@
         <style>
 .content-container {
                 height:85vh;
-                width: 100vw !important;
             }
         </style>
 

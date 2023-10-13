@@ -31,6 +31,16 @@ namespace Dominio
             return true;
         }
 
+        public bool ModificarCantidad(int Id, int cantidad)
+        {
+            ArticuloDeseado articuloDeseado = Articulos.Find(a => a.Articulo.Id == Id);
+            if (articuloDeseado == null) return false;
+            Total -= articuloDeseado.Subtotal;
+            articuloDeseado.Cantidad = cantidad;
+            Total += articuloDeseado.Subtotal;
+            return true;
+        }
+
         public int GetCantidadArticulos()
         {
             return Articulos.Count;

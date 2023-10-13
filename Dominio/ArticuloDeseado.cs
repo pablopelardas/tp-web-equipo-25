@@ -11,7 +11,13 @@ namespace Dominio
         public Articulo Articulo { get; set; }
         public int Cantidad { get; set; }
 
-        public float Subtotal { get; set; }
+        public float Subtotal {
+            get
+            {
+                return Articulo.Precio * Cantidad;
+            }
+        } 
+            
 
         public ArticuloDeseado() { 
             Articulo = new Articulo();
@@ -21,13 +27,8 @@ namespace Dominio
         {
             Articulo = articulo;
             Cantidad = cantidad;
-            Subtotal = articulo.Precio * cantidad;
         }
 
-        public void UpdateSubtotal()
-        {
-            Subtotal = Articulo.Precio * Cantidad;
-        }
 
     }
 }
