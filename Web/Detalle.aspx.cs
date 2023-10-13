@@ -50,6 +50,7 @@ namespace Web
                 else
                 {
                     Session.Add("currentArt", Articulo);
+                    tBoxCantidad.Text = "1";
                 }
             }
         }

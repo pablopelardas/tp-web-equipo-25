@@ -3,9 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%if (Articulo != null)
         { %>
-    <div class="row">
-        <div class="col-6">
-
+    <div class="row article-container">
+        <div class="col-md-6 col-sm-12 image-container">
             <div id="imageCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <%
@@ -63,7 +62,7 @@
         </div>
 
 
-        <div class="col-6">
+        <div class="col-md-6 col-sm-12 content-container">
 
             <label class="text-uppercase fs-5"><%:Articulo.Marca %></label>
             <h2 class="text-dark fw-medium display-2"><%:Articulo.Nombre %></h2>
@@ -71,7 +70,7 @@
 
             <div>
                 <label>Cantidad:</label>
-                <asp:TextBox ID="tBoxCantidad" TextMode="Number" runat="server" min="0" max="50" step="1" />
+                <asp:TextBox ID="tBoxCantidad" TextMode="Number" runat="server" min="1" max="50" step="1" />
             </div>
 
             <label class="text-dark fs-3">$<%:Articulo.Precio %></label>
@@ -90,4 +89,26 @@
     {  %>
     <p>Cargando....</p>
     <%} %>
+
+    <style>
+        .article-container {
+            margin-top: 50px;
+        }
+        .carousel-item{
+            height: 500px;  
+        }
+        .image-container img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .content-container {
+            padding: 50px 50px 0px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .carousel-indicators li::marker{font-size:0;}
+        
+    </style>
 </asp:Content>
