@@ -8,59 +8,68 @@
             foreach (Dominio.Categoria item in ListaCategorias)
             {
         %>
-                <div class="row">
-                    <div class="categoria-container">
-                        <h3><%: item.Nombre %></h3>
-                        <div class="items-container">
-                            <%
-                                foreach (Dominio.Articulo art in ListaArticulos.FindAll(a => a.Categoria.Nombre == item.Nombre))
-                                {
-                            %>
-                                    <div class="card">
-                                        <img src="<%:art.Imagenes[0] %>" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><%: art.Nombre %></h5>
-                                            <p class="card-text">S/. $<%: art.Precio %></p>
-                                            <a href="Detalle.aspx?id=<%: art.Id %>" class="btn btn-outline-dark">Ver Detalle</a>
-                                        </div>
-                                    </div>
-                            <%  } %>
+        <div class="row">
+            <div class="categoria-container">
+                <h3><%: item.Nombre %></h3>
+                <div class="items-container">
+                    <%
+                        foreach (Dominio.Articulo art in ListaArticulos.FindAll(a => a.Categoria.Nombre == item.Nombre))
+                        {
+                    %>
+                    <div class="card">
+                        <%if (art.Imagenes.Count > 0)
+                            {  %>
+                        <img src="<%:art.Imagenes[0] %>" class="card-img-top" alt="...">
+                        <% }
+                        else
+                        {  %>
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                        <% }  %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%: art.Nombre %></h5>
+                            <p class="card-text">S/. $<%: art.Precio %></p>
+                            <a href="Detalle.aspx?id=<%: art.Id %>" class="btn btn-outline-dark">Ver Detalle</a>
                         </div>
-
                     </div>
+                    <%  } %>
                 </div>
+
+            </div>
+        </div>
         <%  } %>
     </div>
 
     <style>
         .categoria-container {
-            display: flex; 
+            display: flex;
             flex-direction: column;
             -ms-flex-wrap: wrap;
             -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
         }
-        .items-container{
+
+        .items-container {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
         }
-        .categoria-container .card{
+
+        .categoria-container .card {
             width: 20%;
             height: 500px;
             margin: 10px 0px;
         }
-.categoria-container .card img{
-            height: 300px;
-        }
 
-        .categoria-container .card .card-body{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 150px;   
-        }
+            .categoria-container .card img {
+                height: 300px;
+            }
 
+            .categoria-container .card .card-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 150px;
+            }
     </style>
 
 </asp:Content>
