@@ -47,5 +47,32 @@ namespace Web
             rptArticulosFiltrados.DataSource = ListaArticulosFiltrada;
             rptArticulosFiltrados.DataBind();
         }
+
+        protected void btnFiltro_Click(object sender, EventArgs e)
+        {
+            if (Session["listaArticulosFiltrada"] == null) return;
+            List<Articulo> listaArticulos = (List<Articulo>)Session["listaArticulosFiltrada"];
+            List<Articulo> listaFiltrada = new List<Articulo>();
+
+            string cat = "";
+            string mrc = "";
+
+            if (filtroCategoria.Text != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Categoria.Nombre.Contains(filtroCategoria.Text));
+                cat = "&cat=" + filtroCategoria.Text;
+            }
+            
+            if(filtroMarca.Text != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Marca.Nombre.Contains(filtroMarca.Text));
+                mrc = "&mrc=" + filtroMarca.Text;
+            } 
+
+            Session.Add("listaArticulosFiltrada", listaFiltrada);
+            Response.Redirect("Resultados.aspx?search=" + Request.QueryString["search"].ToString() + cat + mrc);
+
+
+        }
     }
 }

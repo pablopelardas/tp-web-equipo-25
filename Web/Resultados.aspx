@@ -19,7 +19,7 @@
                     <label for="filtroCategoria">Marca</label>
                     <asp:DropDownList ID="filtroMarca" CssClass="form-select h-1" runat="server" AutoPostBack="false"></asp:DropDownList>
                 </div>
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <asp:Button ID="btnFiltro" Text="Aplicar filtro" OnClick="btnFiltro_Click" CssClass="btn btn-primary" runat="server" />
             </div>
 
             <div class="col-9">
