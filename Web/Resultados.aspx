@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-3">
                 <h4>Filtros</h4>
-                <div class="badge rounded-pill text-bg-secondary">
+                <div class="badge rounded-pill text-bg-secondary" id="divBuscado" runat="server">
                     <asp:Label Text="" ID="textoBuscado" runat="server" />
                     <a href="Default.aspx" class="cancelarBuscar">x</a>
                 </div>

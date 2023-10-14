@@ -13,16 +13,29 @@ namespace Web
         public List<Articulo> ListaArticulosFiltrada { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                filtroCategoria.DataSource = Session["listaCategorias"];
+                filtroCategoria.DataBind();
+                filtroMarca.DataSource = Session["listaMarcas"];
+                filtroMarca.DataBind();
+            }
+            
             if (Session["listaArticulosFiltrada"] == null)
             {
                 ListaArticulosFiltrada = (List<Articulo>)Session["listaArticulos"];
+                divBuscado.Visible = false;
             } else
             {
                 ListaArticulosFiltrada = (List<Articulo>)Session["listaArticulosFiltrada"];
+                textoBuscado.Text = Request.QueryString["search"].ToString();
+                divBuscado.Visible = true;
             }
 
 
-            textoBuscado.Text = Request.QueryString["search"].ToString();
+            
+
+            
 
 
         }
