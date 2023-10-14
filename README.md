@@ -18,7 +18,7 @@ Para poder utilizar todos nuestra propia connection string y no exponer nuestras
 Para poder levantar el proyecto con la base de datos hay que:
 
 ### 1. Crear el archivo connectionStrings.config
-![image](https://github.com/pablopelardas/tp-winform-equipo-25/assets/31576799/0d669dd7-b734-41c1-b3ed-7ae55b3e360a)
+![image](https://github.com/pablopelardas/tp-web-equipo-25/assets/31576799/2fb4b72d-93f8-44ec-b15c-1dbe4f27b14d)
 
 Ya que este es llamado en el Web.config
 ![image](https://github.com/pablopelardas/tp-web-equipo-25/assets/31576799/d2ed1760-b59b-4cf3-b730-c72033b5da70)
