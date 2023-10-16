@@ -7,9 +7,17 @@
         <div class="row">
             <div class="col-3">
                 <h4>Filtros</h4>
-                <div class="badge rounded-pill text-bg-secondary" id="divBuscado" runat="server">
-                    <asp:Label Text="" ID="textoBuscado" runat="server" />
-                    <a href="Default.aspx" class="cancelarBuscar">x</a>
+                <div>
+                    <div class="badge rounded-pill text-bg-secondary" id="divBuscado" runat="server">
+                        <asp:Label Text="" ID="textoBuscado" runat="server" />
+                        <a href="Default.aspx" class="cancelarBuscar">x</a>
+                    </div>
+                    <div class="badge rounded-pill text-bg-secondary" id="divCat" Visible="false" runat="server">
+                        <asp:Label Text="" ID="catBuscado" runat="server" />
+                    </div>
+                    <div class="badge rounded-pill text-bg-secondary" id="divMrc" Visible="false" runat="server">
+                        <asp:Label Text="" ID="mrcBuscado" runat="server" />
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="filtroCategoria">Categoría</label>

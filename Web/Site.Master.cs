@@ -42,7 +42,7 @@ namespace Web
 
         }
 
-        public void SearchButton_Click(object sender, EventArgs e)
+        protected void SearchButton_Click(object sender, EventArgs e)
         {
             if (Session["listaArticulos"] == null) return;
             if (SearchBox.Text == "" || SearchBox.Text.Length < 3) return;

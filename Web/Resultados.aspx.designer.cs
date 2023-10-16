@@ -33,6 +33,42 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label textoBuscado;
 
         /// <summary>
+        /// divCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCat;
+
+        /// <summary>
+        /// catBuscado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label catBuscado;
+
+        /// <summary>
+        /// divMrc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMrc;
+
+        /// <summary>
+        /// mrcBuscado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mrcBuscado;
+
+        /// <summary>
         /// filtroCategoria control.
         /// </summary>
         /// <remarks>

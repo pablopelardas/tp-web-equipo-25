@@ -55,11 +55,17 @@ namespace Web
             string cat = "";
             string mrc = "";
 
+            divCat.Visible = false;
+            divMrc.Visible = false;
+
             if (filtroCategoria.Text != "Seleccionar..")
             {
                 listaFiltrada = listaArticulosFiltrada.FindAll(x => x.Categoria.Nombre.Contains(filtroCategoria.Text));
                 cat = "&cat=" + filtroCategoria.Text;
                 Session.Add("listaArticulosFiltrada", listaFiltrada);
+
+                catBuscado.Text = filtroCategoria.Text;
+                divCat.Visible = true;
             }
             
             if(filtroMarca.Text != "Seleccionar..")
@@ -67,12 +73,13 @@ namespace Web
                 listaFiltrada = listaArticulosFiltrada.FindAll(x => x.Marca.Nombre.Contains(filtroMarca.Text));
                 mrc = "&mrc=" + filtroMarca.Text;
                 Session.Add("listaArticulosFiltrada", listaFiltrada);
+
+                mrcBuscado.Text = filtroCategoria.Text;
+                divMrc.Visible = true;
             } 
 
-            
             Response.Redirect("Resultados.aspx?search=" + Request.QueryString["search"].ToString() + cat + mrc);
-
-
         }
     }
+
 }
