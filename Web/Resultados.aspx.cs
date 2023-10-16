@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 
+
 namespace Web
 {
     public partial class Resultados : System.Web.UI.Page
@@ -17,8 +18,10 @@ namespace Web
             {
                 filtroCategoria.DataSource = Session["listaCategorias"];
                 filtroCategoria.DataBind();
+                filtroCategoria.Items.Insert(0, "Seleccionar..");
                 filtroMarca.DataSource = Session["listaMarcas"];
                 filtroMarca.DataBind();
+                filtroMarca.Items.Insert(0, "Seleccionar..");
             }
             
             if (Session["listaArticulosFiltrada"] == null)
@@ -31,12 +34,6 @@ namespace Web
                 textoBuscado.Text = Request.QueryString["search"].ToString();
                 divBuscado.Visible = true;
             }
-
-
-            
-
-            
-
 
         }
 
@@ -51,25 +48,28 @@ namespace Web
         protected void btnFiltro_Click(object sender, EventArgs e)
         {
             if (Session["listaArticulosFiltrada"] == null) return;
-            List<Articulo> listaArticulos = (List<Articulo>)Session["listaArticulosFiltrada"];
+            List<Articulo> listaArticulos = (List<Articulo>)Session["listaArticulos"];
+            List<Articulo> listaArticulosFiltrada = listaArticulos.FindAll(x => x.Nombre.ToLower().Contains(Request.QueryString["search"].ToString().ToLower()) || x.Descripcion.ToLower().Contains(Request.QueryString["search"].ToString().ToLower()));
             List<Articulo> listaFiltrada = new List<Articulo>();
 
             string cat = "";
             string mrc = "";
 
-            if (filtroCategoria.Text != "")
+            if (filtroCategoria.Text != "Seleccionar..")
             {
-                listaFiltrada = listaArticulos.FindAll(x => x.Categoria.Nombre.Contains(filtroCategoria.Text));
+                listaFiltrada = listaArticulosFiltrada.FindAll(x => x.Categoria.Nombre.Contains(filtroCategoria.Text));
                 cat = "&cat=" + filtroCategoria.Text;
+                Session.Add("listaArticulosFiltrada", listaFiltrada);
             }
             
-            if(filtroMarca.Text != "")
+            if(filtroMarca.Text != "Seleccionar..")
             {
-                listaFiltrada = listaArticulos.FindAll(x => x.Marca.Nombre.Contains(filtroMarca.Text));
+                listaFiltrada = listaArticulosFiltrada.FindAll(x => x.Marca.Nombre.Contains(filtroMarca.Text));
                 mrc = "&mrc=" + filtroMarca.Text;
+                Session.Add("listaArticulosFiltrada", listaFiltrada);
             } 
 
-            Session.Add("listaArticulosFiltrada", listaFiltrada);
+            
             Response.Redirect("Resultados.aspx?search=" + Request.QueryString["search"].ToString() + cat + mrc);
 
 
